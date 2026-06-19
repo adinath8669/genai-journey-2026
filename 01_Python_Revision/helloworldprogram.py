@@ -1,0 +1,8 @@
+print("hello! world")
+print("remembre what i want to be")
+print("i will not stop until i win")
+print("i will become good man")
+print("i will become rich")
+print("i will become my own boss")
+print("i will start my own companey")
+print("i will marry trupti")

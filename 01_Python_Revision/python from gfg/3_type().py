@@ -1,0 +1,10 @@
+a=1
+b=1.2
+c="adi"
+d=complex(1,2)
+e=[1,2,3]
+f=(1,2,3)
+g={1,2,3}
+h={'name':"adi",'age':10}
+print(type(a))
+print(type(h))

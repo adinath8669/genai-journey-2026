@@ -1,0 +1,10 @@
+a= "addinath"
+print(len(a))
+print(a.upper())
+print(a.lower())
+print(a.center(50))
+print(a.endswith("th"))
+print(a.endswith("a",0))
+print(a.find("w"))
+print(a.islower())
+print(a.isupper())
