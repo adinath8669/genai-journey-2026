@@ -96,3 +96,37 @@ Cosine similarity is a way to compare two embeddings and check how similar they 
 
 Embeddings are used in many AI applications like semantic search, chatbots, recommendation systems, Retrieval-Augmented Generation (RAG), document search, and question-answering systems because they help AI understand the meaning of text.
 
+---
+
+📅 Day 4
+## Q1. What is next-token prediction?
+
+Next-token prediction is the process where the model predicts the next word/token based on previous tokens using probability.
+
+---
+
+## Q2. What is probability distribution in LLMs?
+
+It is the list of probabilities assigned to all possible next tokens. The model selects one based on these probabilities.
+
+---
+
+## Q3. What is temperature?
+
+Temperature controls randomness. Low temperature gives stable answers, high temperature gives more creative answers.
+
+---
+
+
+## Q4. What is Top-k and Top-p sampling?
+Top-k: selects from the top k most likely tokens
+Top-p: selects from smallest set of tokens whose probability adds up to a threshold (like 0.9)
+
+---
+
+## Q5. Why do LLMs hallucinate?
+
+LLMs hallucinate because they generate text based on probability, not real-world fact checking. So they can produce believable but incorrect answers.
+
+---
+
