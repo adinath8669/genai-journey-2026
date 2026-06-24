@@ -130,3 +130,35 @@ LLMs hallucinate because they generate text based on probability, not real-world
 
 ---
 
+📅 Day 5
+## Q1. What is Prompt Engineering?
+
+Prompt Engineering is the process of writing clear and effective prompts to get the best possible response from an LLM. A good prompt helps the model understand exactly what we want.
+
+---
+
+## Q2. What is the difference between Zero-shot and Few-shot prompting?
+
+In Zero-shot prompting, we ask the model to perform a task without giving any examples.
+
+In Few-shot prompting, we provide a few examples before asking the actual question. These examples help the model understand the pattern and usually produce better results.
+
+---
+
+## Q3. What is a System Prompt?
+
+A system prompt is a set of instructions given to the model before the user prompt. It defines the model's behavior, tone, and rules throughout the conversation.
+
+---
+
+## Q4. Why is role prompting useful?
+
+Role prompting tells the model to act as a specific expert or person, such as a teacher, doctor, or software engineer. This helps the model generate responses that match that role and are more relevant to the user's request.
+
+---
+
+## Q5. Can prompt engineering completely eliminate hallucinations? Why or why not?
+
+No. Prompt engineering can reduce hallucinations by giving the model clear instructions and enough context, but it cannot remove them completely. LLMs still generate responses by predicting the next token, so they can sometimes produce incorrect or made-up information.
+
+---
