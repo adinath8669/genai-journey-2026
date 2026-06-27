@@ -162,3 +162,101 @@ Role prompting tells the model to act as a specific expert or person, such as a 
 No. Prompt engineering can reduce hallucinations by giving the model clear instructions and enough context, but it cannot remove them completely. LLMs still generate responses by predicting the next token, so they can sometimes produce incorrect or made-up information.
 
 ---
+
+# 🎤 Day 6 Interview Questions – API Basics
+
+## Q1. What is an API?
+
+An **API (Application Programming Interface)** allows two software applications to communicate. It lets Python send requests to an AI model and receive responses.
+
+---
+
+## Q2. How does Python communicate with an LLM?
+
+Python uses an API and an SDK (like the OpenAI SDK) to send prompts to an LLM and receive generated responses.
+
+---
+
+## Q3. What is a chat completion?
+
+A **chat completion** is the AI-generated response based on a conversation containing system, user, and assistant messages.
+
+---
+
+## Q4. Why do we use system prompts in APIs?
+
+System prompts define the AI's role, behavior, and response style, helping it produce consistent and relevant answers.
+
+---
+
+## Q5. What happens when you send a request to OpenAI?
+
+
+```text
+Python Program
+      ↓
+ OpenAI SDK
+      ↓
+ OpenAI API
+      ↓
+   AI Model
+      ↓
+ Generated Response
+```
+
+The API receives the prompt, the model processes it, generates a response, and sends it back to your Python program.
+
+---
+
+# 🎤 Day 7 Interview Questions – Hugging Face
+
+## Q1. What is Hugging Face?
+
+
+Hugging Face is an open-source AI platform that provides pre-trained machine learning and Large Language Models (LLMs). It offers libraries like **Transformers**, **Datasets**, and **Tokenizers**, along with the **Model Hub**, where developers can discover, use, and share AI models for tasks such as text generation, translation, summarization, image processing, and speech recognition.
+
+---
+
+## Q2. What is the Transformers library?
+
+The **Transformers** library is a Python library developed by Hugging Face that provides easy access to thousands of pre-trained transformer models such as **BERT**, **GPT**, **T5**, and **Llama**. It simplifies loading models, tokenization, training, fine-tuning, and inference with just a few lines of code.
+
+---
+
+## Q3. What is a pipeline?
+
+A **pipeline** is a high-level API in the Transformers library that makes it easy to use pre-trained models without writing complex code. It automatically downloads the model, loads the tokenizer, preprocesses the input, performs inference, and returns the output.
+
+**Example:**
+
+```python
+from transformers import pipeline
+
+classifier = pipeline("sentiment-analysis")
+result = classifier("I love learning AI!")
+print(result)
+```
+
+---
+
+## Q4. What is the difference between API-based models and local models?
+
+| API-Based Models                     | Local Models                                |
+| ------------------------------------ | ------------------------------------------- |
+| Run on cloud servers.                | Run on your own computer.                   |
+| Require an internet connection.      | Can work offline after downloading.         |
+| Usually require an API key.          | No API key is needed.                       |
+| Cloud provider manages the hardware. | You manage your own hardware and resources. |
+| Easier to get started.               | Offers more control and privacy.            |
+
+---
+
+## Q5. Name three popular open-source LLMs.
+
+1. Llama (Meta)
+2. Mistral
+3. Gemma (Google)
+
+Other popular open-source models include Falcon, Qwen, DeepSeek, and Phi.
+
+---
