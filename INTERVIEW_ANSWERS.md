@@ -260,3 +260,36 @@ print(result)
 Other popular open-source models include Falcon, Qwen, DeepSeek, and Phi.
 
 ---
+# 🎤 Day 8 Interview Questions – LLM Parameters
+
+## Q1. What does temperature control in an LLM?
+
+Temperature controls the randomness of the model's output. A low temperature gives more predictable answers, while a high temperature produces more creative and varied responses.
+
+---
+
+## Q2. What is the difference between Top-k and Top-p?
+
+
+* **Top-k:** Chooses the next token from the top **k** most likely options.
+* **Top-p:** Chooses from the smallest group of tokens whose cumulative probability reaches **p** (e.g., 0.9).
+
+---
+
+## Q3. Why do we use `max_output_tokens`?
+
+`max_output_tokens` limits the maximum length of the generated response, helping control response size, cost, and generation time.
+
+---
+
+## Q4. When would you use a low temperature?
+
+Use a low temperature for tasks that require accuracy and consistency, such as coding, mathematics, data analysis, or factual question answering.
+
+---
+
+## Q5. Can changing the temperature make an LLM smarter?
+
+No. Changing the temperature only affects the randomness and creativity of the output. It does not change the model's knowledge or intelligence.
+
+---
