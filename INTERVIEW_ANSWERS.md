@@ -293,3 +293,51 @@ Use a low temperature for tasks that require accuracy and consistency, such as c
 No. Changing the temperature only affects the randomness and creativity of the output. It does not change the model's knowledge or intelligence.
 
 ---
+# 🎤 Day 09 Interview Questions – FastAPI Basics
+
+## Q1. What is FastAPI?
+*
+FastAPI is a modern, high-performance Python framework used to build REST APIs. It is fast, easy to use, and automatically generates API documentation.
+
+---
+
+## Q2. What is the difference between GET and POST?
+
+* **GET:** Retrieves data from the server.
+* **POST:** Sends data to the server to create or process a resource.
+
+---
+
+## Q3. What is a path parameter?
+
+A path parameter is a value included in the URL that is used to identify a specific resource.
+
+**Example:**
+
+```text
+/user/10
+```
+
+Here, `10` is the path parameter.
+
+---
+
+## Q4. What is a request body?
+
+A request body is the JSON data sent by the client to the server, usually with a POST request.
+
+**Example:**
+
+```json
+{
+  "question": "What is AI?"
+}
+```
+
+---
+
+## Q5. Why is FastAPI popular for AI backends?
+
+FastAPI is popular because it is fast, supports asynchronous programming, validates data using Pydantic, generates Swagger documentation automatically, and integrates easily with AI models like Gemini and OpenAI.
+
+---
