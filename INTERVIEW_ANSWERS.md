@@ -341,3 +341,42 @@ A request body is the JSON data sent by the client to the server, usually with a
 FastAPI is popular because it is fast, supports asynchronous programming, validates data using Pydantic, generates Swagger documentation automatically, and integrates easily with AI models like Gemini and OpenAI.
 
 ---
+
+#  Day 10 Interview Questions – Streamlit
+
+## Q1. What is Streamlit?
+
+**Answer:**
+Streamlit is an open-source Python framework used to build interactive web applications for data science, machine learning, and AI with minimal code.
+
+---
+
+## Q2. What is Session State?
+
+**Answer:**
+Session State stores data during a user's session, allowing information like chat history, user inputs, and settings to persist across interactions.
+
+---
+
+## Q3. What is the difference between Streamlit and FastAPI?
+
+**Answer:**
+
+* **Streamlit:** Used to build interactive user interfaces for AI and data apps.
+* **FastAPI:** Used to build backend REST APIs that process requests and return data.
+
+---
+
+## Q4. Why is Streamlit popular in AI?
+
+**Answer:**
+Streamlit is popular because it lets developers quickly create AI demos and applications without needing HTML, CSS, or JavaScript. It integrates easily with machine learning and LLM libraries.
+
+---
+
+## Q5. Can Streamlit replace FastAPI?
+
+**Answer:**
+No. Streamlit is designed for building front-end web apps, while FastAPI is designed for creating backend APIs. They are often used together in AI applications.
+
+---
