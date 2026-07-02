@@ -380,3 +380,47 @@ Streamlit is popular because it lets developers quickly create AI demos and appl
 No. Streamlit is designed for building front-end web apps, while FastAPI is designed for creating backend APIs. They are often used together in AI applications.
 
 ---
+
+# 🎤 Day 11 Interview Questions – Vector Databases
+
+## Q1. What is a Vector Database?
+
+**Answer:**  
+A Vector Database stores embeddings (vectors) and performs fast similarity searches to find data with similar meanings instead of exact keyword matches.
+
+---
+
+## Q2. What is Semantic Search?
+
+**Answer:**  
+Semantic Search finds information based on the meaning and context of a query rather than exact words. It uses embeddings to retrieve relevant results.
+
+---
+
+## Q3. What is FAISS?
+
+**Answer:**  
+FAISS (Facebook AI Similarity Search) is an open-source library developed by Meta for efficient similarity search and clustering of dense vectors. It is widely used in AI and RAG applications.
+
+---
+
+## Q4. What is the difference between keyword search and semantic search?
+
+**Answer:**
+
+| Keyword Search | Semantic Search |
+|---------------|-----------------|
+| Matches exact words | Understands meaning and context |
+| Uses SQL or text indexing | Uses embeddings and vector search |
+| Misses similar terms | Finds related concepts |
+| Less effective for AI | Ideal for AI and RAG systems |
+
+---
+
+## Q5. Why do RAG systems use embeddings?
+
+**Answer:**  
+RAG systems use embeddings to convert documents and user queries into vectors. These vectors allow the system to retrieve the most semantically relevant documents from a vector database before generating an answer.
+
+---
+
