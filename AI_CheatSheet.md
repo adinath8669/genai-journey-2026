@@ -432,14 +432,257 @@ pip freeze > requirements.txt
 
 ---
 
-# ⭐ Remember
+# 📚 RAG (Retrieval-Augmented Generation) Cheat Sheet
 
-❌ Don't memorize syntax.
+---
 
-✅ Understand the logic.
+# What is RAG?
 
-If you forget a function:
-1. Read your cheat sheet.
-2. Check the documentation.
-3. Ask AI if needed.
-4. Continue building.
+RAG combines a Vector Database with a Large Language Model (LLM).
+
+Instead of relying only on the model's internal knowledge, it first retrieves relevant documents and then generates an answer.
+
+---
+
+# RAG Pipeline
+
+```
+PDF / Documents
+        │
+        ▼
+Extract Text
+        │
+        ▼
+Chunk Documents
+        │
+        ▼
+Generate Embeddings
+        │
+        ▼
+Store in Vector Database (FAISS/ChromaDB)
+        │
+──────── User asks a Question ────────
+        │
+        ▼
+Generate Query Embedding
+        │
+        ▼
+Similarity Search
+        │
+        ▼
+Retrieve Top-k Chunks
+        │
+        ▼
+Create Prompt
+(Context + Question)
+        │
+        ▼
+LLM (Gemini/OpenAI/Llama)
+        │
+        ▼
+Final Answer
+```
+
+---
+
+# Step 1: Read PDF
+
+```python
+from pypdf import PdfReader
+
+reader = PdfReader("file.pdf")
+
+text = ""
+
+for page in reader.pages:
+    text += page.extract_text()
+```
+
+---
+
+# Step 2: Chunking
+
+```python
+chunks = [
+    text[i:i+500]
+    for i in range(0, len(text), 500)
+]
+```
+
+---
+
+# Step 3: Create Embeddings
+
+```python
+from sentence_transformers import SentenceTransformer
+
+model = SentenceTransformer("all-MiniLM-L6-v2")
+
+embeddings = model.encode(chunks)
+```
+
+Convert to float32
+
+```python
+embeddings = np.array(embeddings).astype("float32")
+```
+
+---
+
+# Step 4: Store in FAISS
+
+```python
+dimension = embeddings.shape[1]
+
+index = faiss.IndexFlatL2(dimension)
+
+index.add(embeddings)
+```
+
+---
+
+# Step 5: User Query
+
+```python
+query = "What is AI?"
+```
+
+---
+
+# Step 6: Query Embedding
+
+```python
+query_embedding = model.encode([query])
+
+query_embedding = np.array(query_embedding).astype("float32")
+```
+
+---
+
+# Step 7: Retrieve Chunks
+
+```python
+distances, indices = index.search(query_embedding, 3)
+```
+
+Retrieve text
+
+```python
+retrieved_chunks = "\n\n".join(
+    [chunks[i] for i in indices[0]]
+)
+```
+
+---
+
+# Step 8: Prompt
+
+```python
+prompt = f"""
+You are a helpful AI assistant.
+
+Use only the context below.
+
+Context:
+{retrieved_chunks}
+
+Question:
+{query}
+
+Answer:
+"""
+```
+
+---
+
+# Step 9: Generate Response
+
+```python
+response = client.models.generate_content(
+    model="gemini-2.5-flash",
+    contents=prompt
+)
+
+print(response.text)
+```
+
+---
+
+# Common Libraries
+
+```python
+from pypdf import PdfReader
+
+from sentence_transformers import SentenceTransformer
+
+import faiss
+
+import numpy as np
+
+from google import genai
+```
+
+---
+
+# Important Terms
+
+### Chunk
+
+Small piece of a document.
+
+---
+
+### Embedding
+
+Vector representation of text.
+
+---
+
+### Vector Database
+
+Stores embeddings for similarity search.
+
+---
+
+### Retrieval
+
+Finding the most relevant chunks.
+
+---
+
+### Context
+
+Retrieved chunks passed to the LLM.
+
+---
+
+### Generation
+
+LLM generates the final answer.
+
+---
+
+# Why RAG?
+
+✅ Reduces hallucinations
+
+✅ Uses external knowledge
+
+✅ Doesn't require retraining
+
+✅ Handles private documents
+
+✅ Easy to update
+
+---
+
+# Common Parameters
+
+```python
+top_k = 3
+chunk_size = 500
+embedding_model = "all-MiniLM-L6-v2"
+llm = "gemini-2.5-flash"
+```
+
+---

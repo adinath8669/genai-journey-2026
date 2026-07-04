@@ -424,3 +424,42 @@ RAG systems use embeddings to convert documents and user queries into vectors. T
 
 ---
 
+# 🎤 Day 12 Interview Questions – RAG (Retrieval-Augmented Generation)
+
+## Q1. What is RAG?
+
+**Answer:**
+RAG (Retrieval-Augmented Generation) is an AI technique that retrieves relevant information from external documents before sending it to an LLM. This helps the model generate more accurate and context-aware answers.
+
+---
+
+## Q2. Why do we split documents into chunks?
+
+**Answer:**
+Large documents are divided into smaller chunks because LLMs have context limits. Chunking also improves retrieval accuracy by searching smaller, more relevant pieces of text.
+
+---
+
+## Q3. What is retrieval?
+
+**Answer:**
+Retrieval is the process of finding the most relevant document chunks from a vector database based on the user's query using similarity search.
+
+---
+
+## Q4. Why do we pass retrieved chunks to the LLM?
+
+**Answer:**
+Retrieved chunks provide the LLM with relevant context so it can answer questions based on the document instead of relying only on its pre-trained knowledge.
+
+---
+
+## Q5. Can RAG update an LLM's knowledge without retraining?
+
+**Answer:**
+Yes. RAG updates the information available to the LLM by retrieving new documents from a vector database. There is no need to retrain the model.
+
+---
+
+
+
