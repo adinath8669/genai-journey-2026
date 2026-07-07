@@ -463,3 +463,66 @@ Yes. RAG updates the information available to the LLM by retrieving new document
 
 
 
+# 🎤 Day 14 – LangChain Interview Questions
+
+## Q1. What is LangChain?
+
+**Answer:**
+
+LangChain is an open-source framework for building applications powered by Large Language Models (LLMs). It helps developers connect LLMs with prompts, documents, databases, APIs, and other tools using reusable components.
+
+---
+
+## Q2. Why do we use PromptTemplate?
+
+**Answer:**
+
+PromptTemplate helps create dynamic prompts by inserting user input into a predefined template. It keeps prompts organized, reusable, and easier to maintain instead of writing long prompt strings manually.
+
+---
+
+## Q3. What is a Chain?
+
+**Answer:**
+
+A Chain is a sequence of connected components where the output of one component becomes the input of the next. For example:
+
+User Input → PromptTemplate → LLM → Output
+
+Chains simplify AI workflows by combining multiple steps into one pipeline.
+
+---
+
+## Q4. What is RunnableSequence (`|`)?
+
+**Answer:**
+
+The `|` operator in LangChain creates a RunnableSequence by connecting components together.
+
+Example:
+
+```python
+chain = prompt | llm
+```
+
+Here, the prompt is passed to the LLM automatically. It provides a clean and readable way to build AI pipelines.
+
+---
+
+## Q5. Can LangChain work with different LLM providers?
+
+**Answer:**
+
+Yes. LangChain supports multiple LLM providers, including:
+
+- Google Gemini
+- OpenAI (ChatGPT)
+- Anthropic Claude
+- Ollama (Local Models)
+- Hugging Face
+- Groq
+- Mistral AI
+
+This allows developers to switch providers with minimal code changes.
+
+---
