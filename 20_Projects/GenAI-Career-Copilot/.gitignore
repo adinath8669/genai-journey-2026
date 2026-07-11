@@ -1,0 +1,17 @@
+venv/
+.env
+__pycache__/
+*.pyc
+
+uploads/*
+!uploads/.gitkeep
+
+data/*
+!data/.gitkeep
+
+.streamlit/
+
+.idea/
+.vscode/
+
+*.db
