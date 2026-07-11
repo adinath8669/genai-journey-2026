@@ -686,3 +686,233 @@ llm = "gemini-2.5-flash"
 ```
 
 ---
+# LangChain Cheat Sheet
+
+## What is LangChain?
+
+LangChain is a framework that helps build AI applications using LLMs.
+
+It connects:
+
+LLM
+↓
+
+Prompts
+
+↓
+
+Memory
+
+↓
+
+Vector Database
+
+↓
+
+Tools
+
+↓
+
+Output Parser
+
+---
+
+## LangChain Flow
+
+User Input
+      │
+      ▼
+Prompt Template
+      │
+      ▼
+LLM
+      │
+      ▼
+Output Parser
+      │
+      ▼
+Final Response
+
+---
+
+## Basic Example
+
+```python
+from langchain_google_genai import ChatGoogleGenerativeAI
+
+llm = ChatGoogleGenerativeAI(
+    model="gemini-2.5-flash"
+)
+
+response = llm.invoke("What is AI?")
+
+print(response.content)
+```
+# Prompt Template Cheat Sheet
+
+## What is a Prompt Template?
+
+A Prompt Template is a reusable prompt with variables.
+
+Instead of writing prompts again and again,
+we create one template and pass different values.
+
+---
+
+## Prompt Flow
+
+User Input
+
+↓
+
+Variables
+
+↓
+
+Prompt Template
+
+↓
+
+LLM
+
+↓
+
+Response
+
+---
+
+## Basic Example
+
+```python
+from langchain_core.prompts import PromptTemplate
+
+template = PromptTemplate.from_template(
+    "Explain {topic} in simple words."
+)
+
+prompt = template.invoke({
+    "topic": "Machine Learning"
+})
+
+print(prompt.text)
+```
+
+---
+
+# Output Parser Cheat Sheet
+
+## What is an Output Parser?
+
+An Output Parser converts the LLM response into a structured format.
+
+Instead of plain text,
+
+LLM
+
+↓
+
+Parser
+
+↓
+
+JSON / List / Dictionary / Pydantic Object
+
+---
+
+## Basic Example
+
+```python
+from langchain_core.output_parsers import StrOutputParser
+
+parser = StrOutputParser()
+
+response = parser.invoke(llm_output)
+```
+
+
+---
+
+
+# Conversation Memory Cheat Sheet
+
+## What is Conversation Memory?
+
+Conversation Memory stores previous messages so the chatbot can answer follow-up questions.
+
+The LLM itself does NOT remember.
+
+The application stores the history.
+
+---
+
+## Conversation Flow
+
+User
+
+↓
+
+HumanMessage
+
+↓
+
+LLM
+
+↓
+
+AIMessage
+
+↓
+
+Store History
+
+↓
+
+Next Question
+
+↓
+
+Send Full History
+
+↓
+
+LLM
+
+---
+
+## Message Types
+
+HumanMessage
+
+User input
+
+AIMessage
+
+LLM response
+
+SystemMessage
+
+Rules for the AI
+
+---
+
+## Basic Example
+
+```python
+from langchain_core.chat_history import InMemoryChatMessageHistory
+from langchain_core.messages import SystemMessage,HumanMessage,AIMessage
+chat_history = InMemoryChatMessageHistory()
+system_message = SystemMessage(
+    content="You are a friendly AI assistant."
+)
+
+def chat(user_input):
+    chat_history.add_user_message(HumanMessage(user_input))
+
+    messages=[system_message]+chat_history.messages
+
+    response=model.invoke(messages)
+
+    chat_history.add_ai_message(AIMessage(response.content))
+
+    return response.content
+```
