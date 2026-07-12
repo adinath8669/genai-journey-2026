@@ -1,0 +1,304 @@
+# 🤖 Conversational RAG Assistant
+
+A Conversational Retrieval-Augmented Generation (RAG) application built using **Streamlit**, **LangChain**, **Google Gemini**, **Sentence Transformers**, and **FAISS**.
+
+The application allows users to upload a PDF, ask questions about its content, and receive context-aware answers while maintaining conversation history.
+
+---
+
+# 🚀 Features
+
+* 📄 Upload any PDF document
+* 📚 Automatic text extraction
+* ✂️ Intelligent document chunking
+* 🔢 Generate embeddings using Sentence Transformers
+* ⚡ Store embeddings in FAISS Vector Database
+* 🔍 Semantic similarity search
+* 🤖 Gemini-powered question answering
+* 💬 Conversation memory using LangChain
+* 📖 View retrieved document chunks
+* 🗑️ Clear chat history
+* 🎨 Interactive Streamlit interface
+
+---
+
+# 🏗️ Project Architecture
+
+```text
+User Uploads PDF
+        │
+        ▼
+Load PDF
+        │
+        ▼
+Chunk Document
+        │
+        ▼
+Generate Embeddings
+        │
+        ▼
+Store in FAISS
+        │
+──────── User asks Question ────────
+        │
+        ▼
+Generate Query Embedding
+        │
+        ▼
+Similarity Search
+        │
+        ▼
+Retrieve Top-k Chunks
+        │
+        ▼
+Prompt Template
+        │
+        ▼
+Gemini LLM
+        │
+        ▼
+Conversation Memory
+        │
+        ▼
+Final Answer
+```
+
+---
+
+# 📂 Project Structure
+
+```text
+14_Conversational_RAG/
+
+│── app.py
+│── rag.py
+│── README.md
+│── notes.md
+│── requirements.txt
+
+├── services
+│     │── pdf_loader_service.py
+│     │── chunking_service.py
+│     │── embedding_service.py
+│     │── vector_store_service.py
+│     │── retriever_service.py
+│     │── prompt_service.py
+│     │── memory_service.py
+│     │── chat_service.py
+│
+├── config.py
+│
+├── .env
+├── .gitignore
+```
+
+---
+
+# 🛠️ Technologies Used
+
+* Python 3
+* Streamlit
+* LangChain
+* Google Gemini API
+* Sentence Transformers
+* FAISS
+* PyPDF
+* NumPy
+* python-dotenv
+
+---
+
+# ⚙️ Installation
+
+### Clone the Repository
+
+```bash
+git clone <repository-url>
+
+cd 14_Conversational_RAG
+```
+
+---
+
+### Create Virtual Environment
+
+```bash
+python -m venv .venv
+```
+
+Activate the environment:
+
+**Windows**
+
+```bash
+.venv\Scripts\activate
+```
+
+---
+
+### Install Dependencies
+
+```bash
+pip install -r requirements.txt
+```
+
+---
+
+### Configure API Key
+
+Create a `.env` file.
+
+```env
+GEN_API_KEY=YOUR_GEMINI_API_KEY
+```
+
+---
+
+### Run the Application
+
+```bash
+streamlit run app.py
+```
+
+---
+
+# 💻 How It Works
+
+### Step 1
+
+Upload a PDF.
+
+↓
+
+### Step 2
+
+The application extracts text from the PDF.
+
+↓
+
+### Step 3
+
+The text is divided into smaller chunks.
+
+↓
+
+### Step 4
+
+Each chunk is converted into embeddings.
+
+↓
+
+### Step 5
+
+Embeddings are stored inside a FAISS Vector Database.
+
+↓
+
+### Step 6
+
+When the user asks a question, the query is converted into an embedding.
+
+↓
+
+### Step 7
+
+FAISS retrieves the most relevant chunks.
+
+↓
+
+### Step 8
+
+The retrieved chunks and user question are passed to Gemini.
+
+↓
+
+### Step 9
+
+Gemini generates the final answer using the retrieved context.
+
+↓
+
+### Step 10
+
+Conversation history is stored to support follow-up questions.
+
+---
+
+# 📚 What I Learned
+
+Through this project, I learned:
+
+* How Retrieval-Augmented Generation (RAG) works.
+* How to extract text from PDF files.
+* How to split documents into chunks.
+* How embeddings represent semantic meaning.
+* How FAISS performs similarity search.
+* How LangChain manages conversation history.
+* How Prompt Templates improve LLM responses.
+* How to build an AI application using Streamlit.
+
+---
+
+# 🌟 Future Improvements
+
+* Support multiple PDF uploads
+* Persist FAISS index to disk
+* Display similarity scores
+* Stream responses token by token
+* Add source citations for retrieved chunks
+* Support different embedding models
+* Deploy on Streamlit Community Cloud
+
+---
+
+# 📸 Application Workflow
+
+```text
+Upload PDF
+     │
+     ▼
+Create Embeddings
+     │
+     ▼
+FAISS Vector DB
+     │
+     ▼
+Ask Question
+     │
+     ▼
+Retrieve Relevant Chunks
+     │
+     ▼
+Gemini LLM
+     │
+     ▼
+Generate Answer
+     │
+     ▼
+Update Chat History
+```
+
+---
+
+# 🎯 Skills Demonstrated
+
+* Retrieval-Augmented Generation (RAG)
+* LangChain
+* Google Gemini API
+* Prompt Engineering
+* Embeddings
+* Vector Databases (FAISS)
+* Semantic Search
+* Conversation Memory
+* Streamlit
+* Python
+
+---
+
+# 👨‍💻 Author
+
+**Adinath Kadam**
+
+Aspiring AI Engineer | Python | LangChain | RAG | Streamlit | FastAPI
+
+Learning and building end-to-end Generative AI applications 🚀

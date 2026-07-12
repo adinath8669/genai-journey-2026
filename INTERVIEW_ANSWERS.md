@@ -622,3 +622,75 @@ A common interview question is: **"Does ChatGPT actually remember conversations?
 A good answer is:
 
 > "No. The LLM itself is stateless. The application stores the conversation history and sends it with every new request. That's why it appears as if the AI remembers previous messages."
+
+
+# 🎤 Day 16 – Conversational RAG Interview Questions
+
+---
+
+## Q1. What is Conversational RAG?
+
+Conversational RAG (Retrieval-Augmented Generation) is a RAG system that can remember previous conversations while answering questions. It combines document retrieval, an LLM, and chat history to generate context-aware responses. This allows users to ask follow-up questions naturally without repeating all the details.
+
+---
+
+## Q2. How is Conversational RAG different from traditional RAG?
+
+Traditional RAG only uses the user's current question to retrieve relevant information from documents. It doesn't consider previous conversations.
+
+Conversational RAG uses both the current question and the conversation history. This helps the AI understand the context and answer follow-up questions more accurately.
+
+---
+
+## Q3. Why is chat history important?
+
+Chat history helps the AI understand the context of the conversation. It remembers what the user asked earlier and what the AI replied. This makes the conversation more natural and allows the user to ask follow-up questions without repeating previous information.
+
+---
+
+## Q4. What happens if we don't include previous messages?
+
+If previous messages are not included, the AI treats every question as a new conversation. It loses the context and may give incorrect or incomplete answers to follow-up questions because it doesn't know what was discussed earlier.
+
+Example:
+
+**User:** My favorite programming language is Python.
+
+**User:** What is my favorite programming language?
+
+Without chat history:
+
+**AI:** I don't know.
+
+With chat history:
+
+**AI:** Your favorite programming language is Python.
+
+---
+
+## Q5. How would you improve a Conversational RAG system for production?
+
+For a production-ready Conversational RAG system, I would:
+
+* Store chat history in a database instead of memory.
+* Use better chunking and retrieval strategies.
+* Add conversation summarization for long chats.
+* Cache embeddings and vector databases for better performance.
+* Implement authentication and session management.
+* Add streaming responses for a better user experience.
+* Monitor retrieval quality and optimize prompts to reduce hallucinations.
+
+---
+
+# 📝 Quick Revision
+
+| Concept                 | My Understanding                                                        |
+| ----------------------- | ----------------------------------------------------------------------- |
+| Conversational RAG      | RAG + Conversation Memory                                               |
+| Traditional RAG         | Retrieves context only from documents                                   |
+| Conversational RAG      | Retrieves context from documents and previous conversation              |
+| Chat History            | Stores previous user and AI messages                                    |
+| Production Improvements | Database, caching, summarization, better retrieval, security, streaming |
+
+---
+
