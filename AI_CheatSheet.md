@@ -1226,3 +1226,160 @@ Chat History
  ▼
 Streamlit UI
 ```
+# AI Agents Cheat Sheet
+
+## What is an AI Agent?
+
+An AI Agent is an LLM that can use external tools to complete tasks.
+
+Instead of only answering from its knowledge, it decides when to use a tool.
+
+---
+
+## Agent Flow
+
+User
+
+↓
+
+Agent
+
+↓
+
+Choose Tool
+
+↓
+
+Execute Tool
+
+↓
+
+Get Result
+
+↓
+
+Final Answer
+
+---
+
+## What is a Tool?
+
+A Tool is a Python function that an Agent can call.
+
+Example:
+
+```python
+@tool
+def calculator(expression: str):
+    return str(eval(expression))
+```
+
+---
+
+## What is Tool Calling?
+
+Tool Calling is the process where the Agent decides which tool to use based on the user's request.
+
+Example:
+
+```text
+User:
+2 + 10
+
+↓
+
+Calculator Tool
+
+↓
+
+12
+```
+
+---
+
+## @tool Decorator
+
+Converts a normal Python function into a LangChain Tool.
+
+```python
+@tool
+def weather(city: str):
+    return "Sunny"
+```
+
+---
+
+## Multiple Tools
+
+```text
+User
+ │
+ ▼
+Agent
+ │
+ ├── Calculator
+ ├── Python Teacher
+ └── Interview Generator
+ │
+ ▼
+Final Answer
+```
+
+---
+
+## Common Libraries
+
+```python
+from langchain.tools import tool
+
+from langchain.agents import create_agent
+
+from langchain_google_genai import ChatGoogleGenerativeAI
+```
+
+---
+
+## Important Terms
+
+**Agent** → Decides what to do.
+
+**Tool** → Python function the Agent can use.
+
+**Tool Calling** → Agent selecting and executing a tool.
+
+**@tool** → Makes a function available to the Agent.
+
+**LLM** → Generates the final response.
+
+---
+
+## Why AI Agents?
+
+✅ Perform calculations
+
+✅ Call APIs
+
+✅ Search databases
+
+✅ Use multiple tools
+
+✅ Automate tasks
+
+---
+
+## Project Architecture
+
+User
+ │
+ ▼
+Agent
+ │
+ ├── Calculator Tool
+ ├── Python Teacher Tool
+ └── Interview Generator Tool
+ │
+ ▼
+LLM
+ │
+ ▼
+Final Response

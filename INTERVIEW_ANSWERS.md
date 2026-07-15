@@ -694,3 +694,57 @@ For a production-ready Conversational RAG system, I would:
 
 ---
 
+
+
+# 🎤 Day 17 – AI Agents Interview Questions
+
+---
+
+## Q1. What is an AI Agent?
+
+An AI Agent is an application that uses an LLM to understand a user's request, decide what action to take, use the required tools if needed, and then generate the final response. Unlike a normal chatbot, an AI Agent can perform tasks using external tools.
+
+---
+
+## Q2. What is a Tool?
+
+A Tool is a Python function or external service that an AI Agent can use to perform specific tasks. Tools allow the agent to do things that an LLM cannot do on its own, such as calculations, searching documents, or calling APIs.
+
+---
+
+## Q3. What is Tool Calling?
+
+Tool Calling is the process where an AI Agent automatically selects and executes the appropriate tool based on the user's request. The LLM decides which tool to use, sends the required input to that tool, receives the result, and then generates the final response.
+
+---
+
+## Q4. Can an LLM perform calculations accurately without tools?
+
+No. An LLM predicts the next token based on probability and may make mistakes in calculations. For accurate mathematical operations, it is better to use a calculator tool or another specialized tool instead of relying only on the LLM.
+
+---
+
+## Q5. Give three examples of tools an AI agent might use.
+
+Some common tools used by AI agents are:
+
+- **Calculator Tool** – Performs mathematical calculations.
+- **Python Teacher Tool** – Explains Python concepts and programming topics.
+- **Interview Generator Tool** – Generates interview questions for a given topic.
+
+Other examples include:
+- Weather API Tool
+- Web Search Tool
+- PDF Reader Tool
+- Database Query Tool
+- Email Sender Tool
+
+---
+
+**"What is the difference between an LLM and an AI Agent?"**
+
+**Answer:**
+
+An **LLM** only generates text based on the input it receives. It cannot directly perform actions like calculations, web searches, or database queries.
+
+An **AI Agent** uses an LLM as its brain but can also use external tools to perform real-world tasks. The agent decides when to call a tool, executes it, and then uses the result to provide a more accurate and useful response.
