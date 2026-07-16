@@ -748,3 +748,61 @@ Other examples include:
 An **LLM** only generates text based on the input it receives. It cannot directly perform actions like calculations, web searches, or database queries.
 
 An **AI Agent** uses an LLM as its brain but can also use external tools to perform real-world tasks. The agent decides when to call a tool, executes it, and then uses the result to provide a more accurate and useful response.
+
+
+# 🎤Day 18  LangGraph – Interview Questions
+
+---
+
+## Q1. What is LangGraph?
+
+LangGraph is a framework built on top of LangChain that helps us create stateful AI applications using graphs. It allows us to connect multiple steps (nodes) with edges and maintain state throughout the workflow. It is especially useful for building AI agents and multi-step reasoning systems.
+
+---
+
+## Q2. What is State?
+
+State is the information that is shared between different nodes in a LangGraph workflow. It stores data such as user input, chat history, intermediate results, and final outputs, allowing each node to access and update the same information.
+
+---
+
+## Q3. What is a Node?
+
+A node is a single step or function in a LangGraph workflow. Each node performs a specific task, such as calling an LLM, retrieving documents, using a tool, or processing data. Nodes receive the current state, perform their task, and return the updated state.
+
+---
+
+## Q4. What is an Edge?
+
+An edge is a connection between two nodes. It defines the order in which the workflow moves from one node to another. Edges control the flow of execution and can be either fixed or conditional based on the current state.
+
+---
+
+## Q5. Why would you choose LangGraph over a simple LangChain chain?
+
+A simple LangChain chain follows a fixed sequence of steps, making it suitable for straightforward workflows. LangGraph is a better choice when the application needs conversation memory, conditional logic, loops, multiple tools, or complex AI agents. It provides more flexibility and is designed for building production-level AI systems.
+
+---
+
+# 📝 Quick Revision
+
+| Concept | My Understanding |
+|----------|------------------|
+| LangGraph | Framework for building stateful AI workflows using graphs. |
+| State | Shared data passed between nodes. |
+| Node | A function or step that performs a specific task. |
+| Edge | Connection that controls the flow between nodes. |
+| LangChain Chain | Fixed linear workflow. |
+| LangGraph | Flexible workflow with memory, branching, and loops. |
+
+---
+
+## 💡 Interview Tip
+
+A common interview question is:
+
+**"When would you use LangGraph instead of LangChain?"**
+
+A good answer is:
+
+> "I would use LangChain for simple, linear workflows like prompt → LLM → output. I would choose LangGraph for complex AI applications that require memory, multiple tools, conditional branching, loops, or agentic workflows because it provides state management and flexible execution."

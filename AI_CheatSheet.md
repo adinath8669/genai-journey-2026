@@ -1383,3 +1383,260 @@ LLM
  │
  ▼
 Final Response
+
+
+# LangGraph Cheat Sheet
+
+## What is LangGraph?
+
+LangGraph is a framework for building AI workflows using nodes and edges.
+
+Instead of writing one long program, we create a graph where each node performs a specific task.
+
+---
+
+## LangGraph Workflow
+
+```text
+User Question
+      │
+      ▼
+ Entry Point
+      │
+      ▼
+   Node 1
+      │
+      ▼
+   Node 2
+      │
+      ▼
+ Final Answer
+```
+
+---
+
+## Conditional Routing
+
+```text
+User Question
+      │
+      ▼
+Classifier Node
+   │          │
+   ▼          ▼
+Teacher   Interview
+   │          │
+   └────┬─────┘
+        ▼
+      Answer
+```
+
+The classifier decides which node should handle the user's question.
+
+---
+
+# Main Components
+
+## State
+
+State stores information that is shared between nodes.
+
+Example:
+
+```python
+class GraphState(TypedDict):
+    question: str
+    answer: str
+```
+
+---
+
+## Node
+
+A node is simply a Python function.
+
+Example:
+
+```python
+def teacher_node(state):
+    return {
+        "answer": "Python is a programming language."
+    }
+```
+
+Each node receives the state and returns an updated state.
+
+---
+
+## Edge
+
+An edge connects one node to another.
+
+```text
+Teacher
+   │
+   ▼
+Interview
+```
+
+---
+
+## Conditional Edge
+
+Chooses the next node based on a condition.
+
+Example:
+
+```python
+if "python" in question:
+    return "teacher"
+else:
+    return "interview"
+```
+
+---
+
+## Entry Point
+
+The first node where graph execution starts.
+
+```python
+graph.set_entry_point("classifier")
+```
+
+---
+
+## END
+
+Marks the end of the workflow.
+
+```python
+graph.add_edge("teacher", END)
+```
+
+---
+
+# Basic Graph
+
+```text
+Question
+    │
+    ▼
+Teacher
+    │
+    ▼
+END
+```
+
+---
+
+# Routing Graph
+
+```text
+Question
+     │
+     ▼
+Classifier
+ ┌────┴────┐
+ ▼         ▼
+Teacher Interview
+    │       │
+    └───┬───┘
+        ▼
+       END
+```
+
+---
+
+# Common Methods
+
+```python
+graph.add_node()
+
+graph.add_edge()
+
+graph.add_conditional_edges()
+
+graph.set_entry_point()
+
+graph.compile()
+
+graph.invoke()
+```
+
+---
+
+# Execution Flow
+
+```python
+result = graph.invoke({
+    "question": "What is Python?"
+})
+```
+
+↓
+
+```text
+Question
+
+↓
+
+Classifier
+
+↓
+
+Teacher Node
+
+↓
+
+Answer
+```
+
+---
+
+# Why LangGraph?
+
+✅ Modular workflows
+
+✅ Easy conditional routing
+
+✅ Supports memory
+
+✅ Multi-agent systems
+
+✅ Production-ready AI applications
+
+---
+
+# Common Use Cases
+
+* AI Chatbots
+* RAG Applications
+* AI Assistants
+* Multi-Agent Systems
+* Customer Support Bots
+* Interview Preparation Bots
+
+---
+
+# Complete Architecture
+
+```text
+User
+ │
+ ▼
+Graph
+ │
+ ▼
+Classifier
+ │
+ ├──────────────┐
+ ▼              ▼
+Teacher     Interview
+ │              │
+ └──────┬───────┘
+        ▼
+      Response
+```
+
+---
