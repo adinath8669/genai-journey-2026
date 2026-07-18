@@ -806,3 +806,65 @@ A common interview question is:
 A good answer is:
 
 > "I would use LangChain for simple, linear workflows like prompt → LLM → output. I would choose LangGraph for complex AI applications that require memory, multiple tools, conditional branching, loops, or agentic workflows because it provides state management and flexible execution."
+
+
+Interview Questions & Answers – Day 19 (Clean Architecture & LCEL)
+
+## Q1. What is Clean Architecture?
+
+Clean Architecture is a way of organizing a project by separating different responsibilities into different files or folders. It keeps the code clean, modular, and easy to maintain. Instead of writing everything in one file, we separate the UI, business logic, configuration, prompts, and utility functions.
+
+---
+
+## Q2. Why should business logic not be inside the UI?
+
+The UI should only handle user interactions like taking input and displaying output. Business logic should be in separate service files. This makes the code easier to maintain, test, debug, and reuse. If the logic changes, we don't need to modify the UI.
+
+---
+
+## Q3. What is Separation of Concerns?
+
+Separation of Concerns means giving each part of the application a specific responsibility. For example:
+
+- `app.py` → User Interface
+- `config.py` → Configuration
+- `prompts.py` → Prompt templates
+- `services.py` → LLM calls and business logic
+- `utils.py` → Helper functions
+
+This keeps the project organized and easier to understand.
+
+---
+
+## Q4. Why do production AI projects have multiple folders?
+
+Large AI projects contain many components like APIs, prompts, models, databases, vector stores, and utilities. Keeping everything in one file becomes difficult to manage. Multiple folders make the project more organized, scalable, reusable, and easier for teams to collaborate on.
+
+---
+
+## Q5. How would you organize a large LangChain project?
+
+A typical LangChain project can be organized like this:
+
+```text
+project/
+
+│── app.py
+│── config.py
+│── prompts.py
+│── models.py
+│── services/
+│     ├── llm_service.py
+│     ├── embedding_service.py
+│     ├── retriever_service.py
+│     ├── memory_service.py
+│
+│── utils/
+│     ├── helper.py
+│     ├── validator.py
+│
+│── data/
+│── vector_store/
+│── requirements.txt
+│── README.md
+```
