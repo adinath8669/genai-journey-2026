@@ -1,0 +1,5 @@
+dotenv
+numpy
+pypdf
+sentence_transformers
+faiss
