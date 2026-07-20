@@ -1,4 +1,4 @@
-from embedding_service import embed_query
+from services.embedding_service import embed_query
 from config.settings import TOP_K
 
 

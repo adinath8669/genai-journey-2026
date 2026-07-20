@@ -8,3 +8,5 @@ CHUNK_SIZE = 500
 TEMPERATURE = 0.1
 MAX_TOKENS = 1000
 LLM_MODEL="gemini-2.5-flash"
+UPLOAD_DIR = "uploads"
+

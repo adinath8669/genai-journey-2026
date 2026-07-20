@@ -1,7 +1,7 @@
-from embedding_service import create_embeddings
-from pdf_service import load_pdf
-from chunking_service import create_chunks
-from vector_store_service import create_vector_store
+from services.embedding_service import create_embeddings
+from services.pdf_service import load_pdf
+from services.chunking_service import create_chunks
+# from vector_store_service import create_vector_store
 import faiss
 import numpy as np
 

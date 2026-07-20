@@ -1,4 +1,4 @@
-from llm_service import llm
+from services.llm_service import llm
 from parsers.output_parser import parser
 from prompts.resume_prompt import resume_prompt
 from services.retrieval_service import retrieve_chunks
