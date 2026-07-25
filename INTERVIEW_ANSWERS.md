@@ -868,3 +868,51 @@ project/
 │── requirements.txt
 │── README.md
 ```
+ Day 20 – Interview Questions: Structured Outputs & Output Parsers
+
+## Q1. Why use structured outputs instead of plain text?
+
+**Answer:**
+Structured outputs return data in a predefined format (such as JSON or Pydantic models), making it easier to process programmatically. They eliminate the need for manual text parsing, improve consistency, reduce errors, and integrate seamlessly with APIs and user interfaces.
+
+---
+
+## Q2. What is Pydantic?
+
+**Answer:**
+Pydantic is a Python library used for data validation and serialization using type hints. It ensures that AI responses follow a specific schema, making the output reliable, structured, and easy to use in applications.
+
+---
+
+## Q3. What are the advantages of Output Parsers?
+
+**Answer:**
+Output Parsers convert raw LLM responses into structured objects. Their advantages include:
+- Consistent output format
+- Automatic validation
+- Easier integration with applications
+- Reduced parsing errors
+- Better maintainability and readability
+
+---
+
+## Q4. Why separate prompts from business logic?
+
+**Answer:**
+Separating prompts from business logic keeps the code modular and easier to maintain. Prompts can be updated without changing application logic, making testing, debugging, and reuse much simpler.
+
+---
+
+## Q5. How would you build an AI interview preparation system?
+
+**Answer:**
+A typical AI interview preparation system would follow this workflow:
+
+1. Upload the candidate's resume.
+2. Extract text from the PDF.
+3. Generate embeddings and store them in a FAISS vector database.
+4. Retrieve relevant resume information using RAG.
+5. Use an LLM with Prompt Templates to generate interview questions.
+6. Return structured outputs using Pydantic Output Parsers.
+7. Display technical, behavioral, project-based, and follow-up questions in a Streamlit interface.
+8. Optionally provide model answers, difficulty levels, and personalized feedback.
