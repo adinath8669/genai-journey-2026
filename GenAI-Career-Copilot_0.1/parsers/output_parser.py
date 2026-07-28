@@ -2,6 +2,7 @@ from langchain_core.output_parsers import PydanticOutputParser
 from pydantic import BaseModel,Field
 from typing import List
 from models.schemas import InterviewResponse
+from models.study_plan_models import StudyPlanResponse
 
 class Parser(BaseModel):
     Resume_score: int =Field (description="Analyze the resume and provide Resume Score (0-100)")
@@ -14,5 +15,8 @@ class Parser(BaseModel):
 parser=PydanticOutputParser(pydantic_object=Parser)
 
 interview_question_parser=PydanticOutputParser(pydantic_object=InterviewResponse)
+
+
+study_plan_parser=PydanticOutputParser(pydantic_object=StudyPlanResponse)
 
 
