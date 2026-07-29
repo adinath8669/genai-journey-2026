@@ -3,6 +3,7 @@ from pydantic import BaseModel,Field
 from typing import List
 from models.schemas import InterviewResponse
 from models.study_plan_models import StudyPlanResponse
+from models.job_match_models import JobMatchResponse
 
 class Parser(BaseModel):
     Resume_score: int =Field (description="Analyze the resume and provide Resume Score (0-100)")
@@ -16,7 +17,8 @@ parser=PydanticOutputParser(pydantic_object=Parser)
 
 interview_question_parser=PydanticOutputParser(pydantic_object=InterviewResponse)
 
-
 study_plan_parser=PydanticOutputParser(pydantic_object=StudyPlanResponse)
+
+job_matcher_parser=PydanticOutputParser(pydantic_object=JobMatchResponse)
 
 

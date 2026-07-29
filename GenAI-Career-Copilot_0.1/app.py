@@ -5,6 +5,7 @@ from services.pdf_service import save_uploaded_file
 from ui.interview import interview_show
 from ui.resume_analysis import show_resume
 from ui.study_plan import show_study_plan
+from ui.job_match import show_job_matcher
 
 
 
@@ -26,6 +27,8 @@ if "interview_data" not in st.session_state:
     st.session_state.interview_data = None
 if "study_plan_data" not in st.session_state:
     st.session_state.study_plan_data = None
+if "job_matcher_data" not in st.session_state:
+    st.session_state.job_matcher_data=None
 
 # ----------------------------
 #Sidebar Configuration
@@ -58,14 +61,15 @@ if uploaded_file :
 # ----------------------------
 if st.session_state.index is not None:
     # SaaS-style Tab Navigation
-    tab1, tab2, tab3 = st.tabs([
+    tab1, tab2, tab3 ,tab4 = st.tabs([
         "📊 Resume Analysis", 
         "🤖 Interview Questions", 
-        "📅 30-Day Study Plan"
+        "📅 30-Day Study Plan",
+        "✅ matching jobs"
     ])
 
     with tab1:
-        st.header("Resume Analysis")
+        # st.header("Resume Analysis")
         st.divider()
         # Pass session state down so the UI component can read/write cached data
         show_resume(st.session_state.index, st.session_state.chunks)
@@ -81,6 +85,12 @@ if st.session_state.index is not None:
         # The study plan UI can now check if st.session_state.study_plan_data 
         # exists before invoking the Gemini API
         show_study_plan(st.session_state.index, st.session_state.chunks)
+
+    with tab4:
+        st.header("Matching Jobs")
+        st.divider()
+        show_job_matcher(st.session_state.index,st.session_state.chunks)
+        
 
 else:
     st.info("Please upload a resume in the sidebar to start the scanning process.")
