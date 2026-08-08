@@ -2,36 +2,57 @@ import streamlit as st
 from services.analysis_service import analyze_resume
 
 def show_resume(index, chunks):
-    with st.spinner("Analyzing resume..."):
-        response = analyze_resume(
-                "Analyze my resume",
-                index,
-                chunks
-            )
+    """
+    Display resume analysis.
+    Analysis is generated only once and cached in session state.
+    """
 
-        # st.write(response)
-        
-        st.header("📊 Resume Analysis")
+    # ----------------------------
+    # Generate Analysis
+    # ----------------------------
+    if st.button("📊 Analyze Resume"):
 
-        col1, col2 = st.columns(2)
+        with st.spinner("Analyzing resume..."):
+            
+            try:
+                response = analyze_resume(
+                    "Analyze my resume",
+                    index,
+                    chunks
+                )
 
-        with col1:
-            st.metric("Resume Score", response.Resume_score)
+                st.session_state.resume_analysis_data = response
 
-        with col2:
-            st.metric("ATS Score", response.ATS_score)
+            except Exception as e:
+                st.error(f"Analysis failed: {e}")
+                return
 
-        st.subheader("✅ Strengths")
+            # st.write(response)
+    if st.session_state.resume_analysis_data is not None:
+            response = st.session_state.resume_analysis_data
 
-        for item in response.strengths:
-            st.write(f"✔️ {item}")
+            
+            st.header("📊 Resume Analysis")
 
-        st.subheader("⚠️ Weaknesses")
+            col1, col2 = st.columns(2)
 
-        for item in response.Weakness:
-            st.write(f"• {item}")
+            with col1:
+                st.metric("Resume Score", response.Resume_score)
 
-        st.subheader("📚 Missing Skills")
+            with col2:
+                st.metric("ATS Score", response.ATS_score)
 
-        for item in response.missing_skills:
-            st.write(f"• {item}")
+            st.subheader("✅ Strengths")
+
+            for item in response.strengths:
+                st.write(f"✔️ {item}")
+
+            st.subheader("⚠️ Weaknesses")
+
+            for item in response.Weakness:
+                st.write(f"• {item}")
+
+            st.subheader("📚 Missing Skills")
+
+            for item in response.missing_skills:
+                st.write(f"• {item}")

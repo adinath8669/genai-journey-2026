@@ -2,42 +2,54 @@ from services.interview_service import generate_interview_questions
 import streamlit as st
 
 def interview_show(index, chunks):
-    with st.spinner("Generating interview questions..."):
 
-            result = generate_interview_questions(
-                "Generate interview questions",
-                index,
-                chunks
-            )
+    if st.button("💼 show interview questions"):
+        with st.spinner("Generating interview questions..."):
 
-            st.subheader("Technical Questions")
+            try:
+                result = generate_interview_questions(
+                    "Generate interview questions",
+                    index,
+                    chunks
+                )
 
-            for q in result.technical_questions:
-                st.markdown(f"### ❓ {q.question}")
-                st.write(f"**Difficulty:** {q.difficulty}")
-                st.write(f"**Expected Answer:** {q.answer}")
-                st.divider()
+                st.session_state.interview_data = result
 
-            st.subheader("Behavioral Questions")
+            except Exception as e:
+                st.error(f"Failed to generate interview questions: {e}")
+                return
 
-            for q in result.behavioral_questions:
-                st.markdown(f"### ❓ {q.question}")
-                st.write(f"**Difficulty:** {q.difficulty}")
-                st.write(f"**Expected Answer:** {q.answer}")
-                st.divider()
+    if st.session_state.interview_data is not None:
+                result = st.session_state.interview_data
 
-            st.subheader("Project Questions")
+                st.subheader("Technical Questions")
 
-            for q in result.project_questions:
-                st.markdown(f"### ❓ {q.question}")
-                st.write(f"**Difficulty:** {q.difficulty}")
-                st.write(f"**Expected Answer:** {q.answer}")
-                st.divider()
+                for q in result.technical_questions:
+                    st.markdown(f"### ❓ {q.question}")
+                    st.write(f"**Difficulty:** {q.difficulty}")
+                    st.write(f"**Expected Answer:** {q.answer}")
+                    st.divider()
 
-            st.subheader("Follow-up Questions")
+                st.subheader("Behavioral Questions")
 
-            for q in result.follow_up_questions:
-                st.markdown(f"### ❓ {q.question}")
-                st.write(f"**Difficulty:** {q.difficulty}")
-                st.write(f"**Expected Answer:** {q.answer}")
-                st.divider()
+                for q in result.behavioral_questions:
+                    st.markdown(f"### ❓ {q.question}")
+                    st.write(f"**Difficulty:** {q.difficulty}")
+                    st.write(f"**Expected Answer:** {q.answer}")
+                    st.divider()
+
+                st.subheader("Project Questions")
+
+                for q in result.project_questions:
+                    st.markdown(f"### ❓ {q.question}")
+                    st.write(f"**Difficulty:** {q.difficulty}")
+                    st.write(f"**Expected Answer:** {q.answer}")
+                    st.divider()
+
+                st.subheader("Follow-up Questions")
+
+                for q in result.follow_up_questions:
+                    st.markdown(f"### ❓ {q.question}")
+                    st.write(f"**Difficulty:** {q.difficulty}")
+                    st.write(f"**Expected Answer:** {q.answer}")
+                    st.divider()
