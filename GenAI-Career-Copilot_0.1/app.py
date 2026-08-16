@@ -7,6 +7,7 @@ from ui.resume_analysis import show_resume
 from ui.study_plan import show_study_plan
 from ui.job_match import show_job_matcher
 from ui.job_description import show_job_description_matcher
+from ui.chat import show_chat
 
 
 
@@ -31,6 +32,7 @@ if "job_matcher_data" not in st.session_state:
     st.session_state.job_matcher_data=None
 if "job_description_matcher_data" not in st.session_state:
     st.session_state.job_description_matcher_data=None
+
 
 # ----------------------------
 #Sidebar Configuration
@@ -61,6 +63,7 @@ if uploaded_file :
             st.session_state.interview_data = None
             st.session_state.study_plan_data = None
             st.session_state.job_matcher_data = None
+            st.session_state.job_description_matcher_data = None
         st.success("✅ Resume processed successfully!")
 
 
@@ -69,12 +72,13 @@ if uploaded_file :
 # ----------------------------
 if st.session_state.index is not None:
     # SaaS-style Tab Navigation
-    tab1, tab2, tab3 ,tab4,tab5 = st.tabs([
+    tab1, tab2, tab3 ,tab4,tab5 ,tab6= st.tabs([
         "📊 Resume Analysis", 
         "🤖 Interview Questions", 
         "📅 30-Day Study Plan",
         "✅ matching jobs",
-        "📋 Job Description Match"
+        "📋 Job Description Match",
+        "💬 Chat With Resume"
     ])
 
     with tab1:
@@ -104,6 +108,17 @@ if st.session_state.index is not None:
         st.header("📄 Job Description Match")
         st.divider()
         show_job_description_matcher(
+            st.session_state.index,
+            st.session_state.chunks
+        )
+
+    with tab6:
+
+        st.header("💬 Chat With Your Resume")
+
+        st.divider()
+
+        show_chat(
             st.session_state.index,
             st.session_state.chunks
         )
