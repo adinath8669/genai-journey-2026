@@ -2,6 +2,7 @@ from services.vector_store_service import build_vector_store
 import streamlit as st
 from helper_utils.helpers import initialize_session
 from services.pdf_service import save_uploaded_file
+from graph.nodes import resume_analysis_node, skill_gap_node
 from ui.interview import interview_show
 from ui.resume_analysis import show_resume
 from ui.study_plan import show_study_plan
@@ -32,6 +33,12 @@ if "job_matcher_data" not in st.session_state:
     st.session_state.job_matcher_data=None
 if "job_description_matcher_data" not in st.session_state:
     st.session_state.job_description_matcher_data=None
+
+# NEW — cached graph pre-routing results, computed once per resume upload
+if "resume_analysis" not in st.session_state:
+    st.session_state.resume_analysis=None
+if "skill_gap_result" not in st.session_state:
+    st.session_state.skill_gap_result=None
 
 
 # ----------------------------
@@ -64,8 +71,25 @@ if uploaded_file :
             st.session_state.study_plan_data = None
             st.session_state.job_matcher_data = None
             st.session_state.job_description_matcher_data = None
-        st.success("✅ Resume processed successfully!")
 
+        # NEW — run resume_analyze + skill_gap ONCE per upload, cache results
+        # so every tab's graph.invoke() call reuses them instead of
+        # recomputing on every single button click.
+
+        with st.spinner("Analyzing resume and identifying skill gaps..."):
+            seed_state=resume_analysis_node({
+                "request":"Analyze this resume",
+                "intent":"",
+                "index":index,
+                "chunks":chunks,
+                "resume_analysis":None,
+                "skill_gap_result":None,
+            })
+            seed_state=skill_gap_node(seed_state)
+            st.session_state.resume_analysis=seed_state["resume_analysis"]
+            st.session_state.skill_gap_result=seed_state["skill_gap_result"]
+
+        st.success("✅ Resume processed successfully!")
 
 # ----------------------------
 # Main Content Area

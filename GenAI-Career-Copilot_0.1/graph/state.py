@@ -1,18 +1,13 @@
-from typing import TypedDict
+from typing import TypedDict,Optional,Any
 
 
 class GraphState(TypedDict):
-    """
-    State shared between LangGraph nodes.
-    """
 
-    question: str
-    index: object
-    chunks: list[str]
-    retrieved_chunks: list[str]
-    answer: str
+    request :str
+    intent:str
 
+    index :Any
+    chunks :list[str]
 
-class GraphState2(TypedDict):
-    request: str
-    result: str
+    resume_analysis:Optional[dict]
+    skill_gap_result :Optional[dict]

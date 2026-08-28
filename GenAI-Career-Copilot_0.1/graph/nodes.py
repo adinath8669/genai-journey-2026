@@ -1,118 +1,27 @@
+from services.analysis_service import analyze_resume
 from graph.state import GraphState
-from graph.state import GraphState2
-
-from services.retrieval_service import retrieve_chunks
-from services.llm_service import llm
-
-from langchain_core.prompts import PromptTemplate
 
 
-# --------------------------------------------------
-# Prompt
-# --------------------------------------------------
+def resume_analysis_node(state:GraphState)->GraphState:
+    if state.get("resume_analysis") is not None:
+        return state
 
-prompt = PromptTemplate.from_template(
-    """
-You are an AI assistant analyzing a user's resume.
-
-Use ONLY the resume context provided below.
-
-Resume Context:
-{context}
-
-Question:
-{question}
-
-Answer:
-"""
-)
-
-
-# --------------------------------------------------
-# Retrieve Node
-# --------------------------------------------------
-
-def retrieve_node(state: GraphState):
-    """
-    Retrieve relevant resume chunks based on the
-    user's question.
-    """
-
-    question = state["question"]
-
-    retrieved_chunks = retrieve_chunks(
-        query=question,
-        index=state["index"],
-        chunks=state["chunks"]
+    result=analyze_resume(
+        query=state['request'],
+        index=state['index'],
+        chunks=state['chunks']
     )
 
-    return {
-        "retrieved_chunks": retrieved_chunks
+    return {**state ,"resume_analysis":result}
+
+def skill_gap_node(state:GraphState)->GraphState:
+    if state.get("skill_gap_result") is not None:
+        return state # already cached — skip recompute
+
+    missing_skills=state['resume_analysis'].missing_skills
+    skill_gap_result={
+        "missing_skills":missing_skills,
+        "gap_summary":f"{len(missing_skills)} missing skill(s) identified"
     }
 
-
-# --------------------------------------------------
-# Generate Node
-# --------------------------------------------------
-
-def generate_node(state: GraphState):
-    """
-    Generate an answer using the retrieved resume
-    context and user's question.
-    """
-
-    context = "\n\n".join(
-        state["retrieved_chunks"]
-    )
-
-    messages = prompt.invoke(
-        {
-            "context": context,
-            "question": state["question"]
-        }
-    )
-
-    response = llm.invoke(messages)
-
-    return {
-        "answer": response.content
-    }
-
-
-
-def analyze_node(state: GraphState2):
-    request = state["request"]
-
-    print(f"Analyzing request: {request}")
-
-    return {
-        "request": request
-    }
-
-
-def interview_node(state: GraphState2):
-
-    return {
-        "result": "I will generate interview questions for you."
-    }
-
-
-def study_plan_node(state: GraphState2):
-
-    return {
-        "result": "I will create a personalized study plan for you."
-    }
-
-
-def route_request(state: GraphState2):
-
-    request = state["request"].lower()
-
-    if "interview" in request or "question" in request:
-        return "interview"
-
-    elif "study" in request or "learn" in request or "plan" in request:
-        return "study_plan"
-
-    else:
-        return "study_plan"
+    return {**state ,"skill_gap_result":skill_gap_result}
