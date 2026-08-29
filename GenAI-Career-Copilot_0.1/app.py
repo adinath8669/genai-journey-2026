@@ -84,6 +84,9 @@ if uploaded_file :
                 "chunks":chunks,
                 "resume_analysis":None,
                 "skill_gap_result":None,
+                "interview_result": None,
+                "study_plan_result": None,
+                "job_match_result": None
             })
             seed_state=skill_gap_node(seed_state)
             st.session_state.resume_analysis=seed_state["resume_analysis"]

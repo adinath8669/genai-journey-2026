@@ -11,3 +11,7 @@ class GraphState(TypedDict):
 
     resume_analysis:Optional[dict]
     skill_gap_result :Optional[dict]
+
+    interview_result :Optional[dict]
+    study_plan_result :Optional[dict]
+    job_match_result :Optional[dict]
