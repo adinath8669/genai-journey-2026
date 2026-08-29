@@ -1,5 +1,6 @@
 # from services.interview_service import generate_interview_questions
-from graph.graph import graph
+# from graph.graph import graph
+from helper_utils.helper import run_career_copilot_graph
 import streamlit as st
 
 def interview_show(index, chunks):
@@ -8,17 +9,7 @@ def interview_show(index, chunks):
         with st.spinner("Generating interview questions..."):
 
             try:
-                result = graph.invoke({
-                    "request":"Generate interview questions",
-                    "intent":"",
-                    "index":index,
-                    "chunks":chunks,
-                    "resume_analysis": st.session_state.resume_analysis,
-                    "skill_gap_result": st.session_state.skill_gap_result,
-                    "interview_result": None,
-                    "study_plan_result": None,
-                    "job_match_result": None
-                })
+                result = run_career_copilot_graph("Generate interview questions", index, chunks)
 
                 st.session_state.interview_data = result["interview_result"]
 

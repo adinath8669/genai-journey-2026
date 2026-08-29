@@ -8,6 +8,7 @@ from graph.nodes import (
     study_plan_prep_node,
     study_plan_generate_node,
     job_match_node,
+    unknown_node,
     router_request
 )
 
@@ -20,6 +21,7 @@ builder.add_node("interview",interview_node)
 builder.add_node("study_paln_prep",study_plan_prep_node)
 builder.add_node("study_plan_genrate",study_plan_generate_node)
 builder.add_node("job_match",job_match_node)
+builder.add_node("unknown", unknown_node)
 
 builder.add_edge(START,"resume_analysis")
 builder.add_edge("resume_analysis","skill_gap")
@@ -31,7 +33,8 @@ builder.add_conditional_edges(
     {
         "interview":"interview",
         "study_plan":"study_paln_prep",
-        "job_match":"job_match"
+        "job_match":"job_match",
+        "unknown": "unknown"
 
     }
 )
@@ -40,6 +43,7 @@ builder.add_edge("interview",END)
 builder.add_edge("study_paln_prep","study_plan_genrate")
 builder.add_edge("study_plan_genrate",END)
 builder.add_edge("job_match",END)
+builder.add_edge("unknown", END)
 
 
 graph=builder.compile()

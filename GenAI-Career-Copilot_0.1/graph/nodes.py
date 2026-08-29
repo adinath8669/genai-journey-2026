@@ -79,3 +79,11 @@ def job_match_node(state:GraphState)->GraphState:
 
     return {**state ,"job_match_result":result}
 
+def unknown_node(state: GraphState) -> GraphState:
+    return {
+        **state,
+        "interview_result": None,
+        "study_plan_result": None,
+        "job_match_result": None
+    }
+

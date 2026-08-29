@@ -1,5 +1,6 @@
 # from services.study_plan_service import generate_study_plan
 from graph.graph import graph
+from helper_utils.helper import run_career_copilot_graph
 import streamlit as st
 
 def show_study_plan(index, chunks):
@@ -11,17 +12,9 @@ def show_study_plan(index, chunks):
         with st.spinner("Generating your personalized 30-day study plan..."):
 
                 try:
-                    result = graph.invoke({
-                        "request": "Generate a 30-day study plan",
-                        "intent": "",
-                        "index": index,
-                        "chunks": chunks,
-                        "resume_analysis": st.session_state.resume_analysis,
-                        "skill_gap_result": st.session_state.skill_gap_result,
-                        "interview_result": None,
-                        "study_plan_result": None,
-                        "job_match_result": None
-                    })
+
+                    result = run_career_copilot_graph("Generate a 30-day study plan", index, chunks)
+                   
                     st.session_state.study_plan_data = result["study_plan_result"]
                 except Exception as e:
                     st.error(f"Failed to generate study plan: {e}")
