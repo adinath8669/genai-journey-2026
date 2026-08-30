@@ -17,10 +17,17 @@ def generate_study_plan(query:str,index ,chunks):
         chunks=chunks
     )
 
-    response = study_plan_chain.invoke(
-        {
-            "resume_context": "\n\n".join(retrieved_chunks)
-        }
-    )
+    try:
+
+        response = study_plan_chain.invoke(
+            {
+                "resume_context": "\n\n".join(retrieved_chunks)
+            }
+        )
+
+    except Exception as e:
+        raise ValueError(
+             f"Study plan generation failed: {type(e).__name__}: {e}"
+        )from e
 
     return response

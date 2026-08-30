@@ -27,11 +27,17 @@ def generate_job_matches(query:str,index,chunks):
     )
 
 
-    response = job_matcher_chain.invoke(
-            {
-                "context": "\n\n".join(retrieved_chunks)
-            }
-        )
+    try:
+        response = job_matcher_chain.invoke(
+                {
+                    "context": "\n\n".join(retrieved_chunks)
+                }
+            )
+
+    except Exception as e:
+        raise ValueError(
+            f"Job matching failed: {type(e).__name__}: {e}"
+        )from e
 
     return response
 

@@ -1,6 +1,6 @@
 from pypdf import PdfReader
 import os
-from config.settings import UPLOAD_DIR
+from config.settings import UPLOAD_DIR,MIN_RESUME_TEXT_LENGTH
 
 
 def save_uploaded_file(uploaded_file ) -> str:
@@ -19,9 +19,25 @@ def save_uploaded_file(uploaded_file ) -> str:
 
 
 def load_pdf(pdf :str)->str:
-    reader=PdfReader(pdf)
+    try:
+        reader=PdfReader(pdf)
+
+    except Exception as e:
+        raise ValueError(
+            f"could not read PDF '{pdf}'. It may corrupted or password-protected."
+        ) from e
+    
     text=""
     for pages in reader.pages:
-        text += pages.extract_text() or " "
+        text += pages.extract_text() or ""
+
+    text = text.strip()
+
+
+    if len(text) < MIN_RESUME_TEXT_LENGTH:
+        raise ValueError(
+            "This PDF doesn't contain enough readable text to analyze. "
+            "It may be a scanned image without OCR — try uploading a text-based PDF."
+        )
 
     return text

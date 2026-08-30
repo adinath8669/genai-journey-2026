@@ -32,10 +32,16 @@ def analyze_resume(query: str, index, chunks):
     )
 
     # Invoke the LangChain pipeline
-    response = resume_analysis_chain.invoke(
-        {
-            "context": "\n\n".join(retrieved_chunks)
-        }
-    )
+    try :
+        response = resume_analysis_chain.invoke(
+            {
+                "context": "\n\n".join(retrieved_chunks)
+            }
+        )
+
+    except Exception as e:
+        raise ValueError(
+            f"Resume analysis failed: {type(e).__name__}: {e}"
+        ) from e
 
     return response

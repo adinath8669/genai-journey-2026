@@ -14,10 +14,17 @@ def generate_interview_questions(query:str,index ,chunks):
         chunks=chunks
     )
 
-    response = interview_question_chain.invoke(
-        {
-            "context": "\n\n".join(retrieved_chunks)
-        }
-    )
+    try:
+
+        response = interview_question_chain.invoke(
+            {
+                "context": "\n\n".join(retrieved_chunks)
+            }
+        )
+
+    except Exception as e:
+        raise ValueError(
+            f"Interview question generation failed: {type(e).__name__}: {e}"
+        )from e
 
     return response

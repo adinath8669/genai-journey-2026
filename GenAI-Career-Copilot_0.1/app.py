@@ -60,7 +60,12 @@ if uploaded_file :
 # Process only if a different resume is uploaded
     if st.session_state.current_resume != uploaded_file.name:
         with st.spinner("Building Vector Database..."):
-            index, chunks = build_vector_store(file_path)
+            try:
+                index, chunks = build_vector_store(file_path)
+            except ValueError as e:
+                st.error(str(e))
+                st.stop()
+                
             st.session_state.index = index
             st.session_state.chunks = chunks
             st.session_state.current_resume = uploaded_file.name
