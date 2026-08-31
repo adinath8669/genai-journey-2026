@@ -8,7 +8,11 @@ def show_study_plan(index, chunks):
     Display a personalized 30-day study plan
     generated from the uploaded resume.
     """
-    if st.button("Generate a 30-day study plan"):
+    has_cached_result = st.session_state.study_plan_data is not None
+    
+    button_label = "🔄 Regenerate Study Plan" if has_cached_result else "Generate a 30-day study plan"
+
+    if st.button(button_label):
         with st.spinner("Generating your personalized 30-day study plan..."):
 
                 try:

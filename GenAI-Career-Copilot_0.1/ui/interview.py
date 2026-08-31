@@ -5,7 +5,11 @@ import streamlit as st
 
 def interview_show(index, chunks):
 
-    if st.button("💼 show interview questions"):
+    has_cached_result = st.session_state.interview_data is not None
+
+    button_label = "🔄 Regenerate interview questions" if has_cached_result else "💼 Show interview questions"
+
+    if st.button(button_label):
         with st.spinner("Generating interview questions..."):
 
             try:

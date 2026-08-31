@@ -8,7 +8,11 @@ def show_job_matcher(index, chunks):
     """
     Display job recommendations based on the uploaded resume.
     """
-    if st.button("💼 matching jobs"):
+    has_cached_result = st.session_state.job_matcher_data is not None
+
+    button_label = "🔄 Regenerate matching jobs" if has_cached_result else "💼 matching jobs"
+
+    if st.button(button_label):
         with st.spinner("Generating your matching jobs based on your resume ...."):
 
             try:
