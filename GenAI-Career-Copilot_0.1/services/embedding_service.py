@@ -12,6 +12,7 @@ Returns a NumPy array of shape (n_chunks, embedding_dimension).
 def get_embedding_model():
     return SentenceTransformer(EMBEDDING_MODEL)
 
+@st.cache_resource(show_spinner=False)
 def create_embeddings(chunks : list[str])->np.array:
     model = get_embedding_model()
     embeddings=model.encode(chunks)

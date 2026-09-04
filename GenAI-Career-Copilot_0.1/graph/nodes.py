@@ -3,6 +3,9 @@ from services.interview_service import generate_interview_questions
 from services.study_plan_service import generate_study_plan
 from services.job_match_service import generate_job_matches
 from graph.state import GraphState
+import logging
+
+logger = logging.getLogger(__name__)
 
 
 def resume_analysis_node(state:GraphState)->GraphState:
@@ -42,6 +45,7 @@ def analyze_node(state :GraphState)->GraphState:
     else :
         intent="unknown"
 
+    logger.info(f"Routed request '{state['request']}' to intent: {intent}")
     return {**state, "intent":intent}
 
 def router_request(state: GraphState)->str:

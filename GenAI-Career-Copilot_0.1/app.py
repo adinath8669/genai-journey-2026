@@ -9,7 +9,8 @@ from ui.study_plan import show_study_plan
 from ui.job_match import show_job_matcher
 from ui.job_description import show_job_description_matcher
 from ui.chat import show_chat
-
+from config.logging_config import setup_logging
+setup_logging()
 
 
 st.set_page_config(

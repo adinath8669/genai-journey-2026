@@ -2,7 +2,9 @@ from services.llm_service import llm
 from parsers.output_parser import parser
 from prompts.resume_prompt import resume_prompt
 from services.retrieval_service import retrieve_chunks
+import logging
 
+logger = logging.getLogger(__name__)
 
 
 # Build the chain once
@@ -40,8 +42,10 @@ def analyze_resume(query: str, index, chunks):
         )
 
     except Exception as e:
+        logger.error(f"Resume analysis failed: {type(e).__name__}: {e}")
         raise ValueError(
             f"Resume analysis failed: {type(e).__name__}: {e}"
         ) from e
 
+    logger.info("Resume analysis completed successfully.")
     return response
